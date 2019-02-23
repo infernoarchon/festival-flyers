@@ -1,13 +1,29 @@
-body { background-color: #F2F6D0 }
+body { 
+  background-color: #F2F6D0;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+p {
+  font-size: 1em !important;
+  line-height: 1.375;
+}
+
+h5 {
+  font-weight: 700 !important;
+}
+
+.concert-date {
+  font-size: 0.875em;
+}
 
 .article-container {
-    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     height: 80px;
+    padding: 0.25em 0.875em 0 0.75em;
 }
 
 .flyer-image {
-    height: 100vh !important;
-    width: auto !important;
+    max-height: 90%;
 }
 
 .favorite-icon {
@@ -32,9 +48,20 @@ body { background-color: #F2F6D0 }
 #articles {
   display: inline-block;
   overflow: auto;
-  height: 100vh;
-  padding: 1em;
+  height: calc(100vh - 60px);
 }
+
+#left-nav {
+  height: 100vh;
+  padding: 0 !important;
+}
+
+.left-nav-header {
+  height: 60px;
+  padding: 1em 0 0 0.75em;
+  border-bottom: 1px solid #ccc;
+}
+
 #notes {
   float: right;
   width: 30%;

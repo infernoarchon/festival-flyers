@@ -1,15 +1,16 @@
 body { 
   background-color: #F2F6D0;
-  font-family: 'Roboto', sans-serif !important;
 }
 
 p {
   font-size: 1em !important;
   line-height: 1.375;
+  font-family: 'Roboto', sans-serif;
 }
 
-h5 {
+h4 {
   font-weight: 700 !important;
+  font-family: 'Didact Gothic', sans-serif !important;
 }
 
 .concert-date {
@@ -58,7 +59,7 @@ h5 {
 
 .left-nav-header {
   height: 60px;
-  padding: 1em 0 0 0.75em;
+  padding: 0.875em 0 0 0.75em;
   border-bottom: 1px solid #ccc;
 }
 

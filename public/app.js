@@ -3,13 +3,13 @@ $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<a href='" + data[i].link +"' target='_blank'><p data-id='" + data[i]._id + "'>" + data[i].title + "</p></a>");
+    $("#articles").append("<div class='article-container d-flex justify-content-between'><a href='#'><p class='pt-1'>" + data[i].title + "</p></a><i class='favorite-icon fas fa-heart mt-2 ml-1' data-id='" + data[i]._id + "'></div>");
   }
 });
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "button", function() {
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag

@@ -39,16 +39,18 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $('.ai1ec-event-header').each(function(i, element) {
+    $('.ai1ec-event').each(function(i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children('.ai1ec-event-title').contents();
-      // result.date = $(this)
-      //   .text();
+      result.title = $(this).find('.ai1ec-event-title').contents();
+      result.date = $(this).find('.ai1ec-event-time').text();
+      result.image = $(this).find('img').attr('src');
+
 
       // Create a new Article using the `result` object built from scraping
+      if(result.title)
       db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console

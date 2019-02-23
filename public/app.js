@@ -3,12 +3,21 @@ $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<div class='article-container d-flex justify-content-between'><a href='#'><p class='pt-1'>" + data[i].title + "</p></a><i class='favorite-icon fas fa-heart mt-2 ml-1' data-id='" + data[i]._id + "'></div>");
+    $("#articles").append("<div class='article-container d-flex justify-content-between'><p class='pt-1' data-image='" + data[i].image + "'><a href='#'>" + data[i].title + "</a><br><span class='concert-date'>" + data[i].date.replace('all-day','') +"</span></p><i class='favorite-icon fas fa-heart mt-2 ml-1' data-id='" + data[i]._id + "'></div>");
   }
 });
 
+//Whenever someone clicks on a concert title
+$(document).on("click", "p", function() {
+  $("img").attr("src",$(this).attr("data-image"))
+  })
+
+
+
+
 
 // Whenever someone clicks a p tag
+
 $(document).on("click", "button", function() {
   // Empty the notes from the note section
   $("#notes").empty();

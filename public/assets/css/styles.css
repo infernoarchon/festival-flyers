@@ -10,16 +10,41 @@ nav {
   color: #fff;
 }
 
+.comment-area {
+  border-left: 1px solid #ccc;
+  background: #eee;
+}
+
+.comment-area-active {
+  border-left: 1px solid #ccc;
+}
+
+.flyer-container {
+  background: #eee;
+  height: 100vh;
+  width: 70%;
+}
+
 p {
-  font-size: 1em !important;
+  font-size: 0.875em !important;
   line-height: 1.375;
   font-family: 'Roboto', sans-serif;
 }
 
-h4 {
+h5 {
   font-weight: 700 !important;
   font-family: 'Didact Gothic', sans-serif !important;
 }
+
+.spin {
+  -webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 .concert-date {
   font-size: 0.875em;
@@ -31,9 +56,7 @@ h4 {
     padding: 0.25em 0.875em 0 0.75em;
 }
 
-.flyer-image {
-    max-height: 90%;
-}
+
 
 .favorite-icon {
     color: #ccc;
@@ -43,11 +66,6 @@ h4 {
     color: #999;
 }
 
-.flyer-container {
-    background: #ccc;
-    height: 100vh;
-    width: 70%;
-}
 
 #wrapper {
   width: 100%;
@@ -59,6 +77,11 @@ h4 {
   display: inline-block;
   overflow: auto;
   height: calc(100vh - 60px);
+}
+
+.nav-link {
+  font-size: 0.875em !important;
+  margin-bottom: 0.25em;
 }
 
 
@@ -107,4 +130,26 @@ textarea {
 }
 .save-button {
     margin-top: -2.5em;
+}
+
+/* -- Magnifier -- */
+* {box-sizing: border-box;}
+
+.flyer-image {
+  max-height: 90%;
+}
+
+.img-magnifier-container {
+  position: relative;
+  height: 100vh;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 300px;
+  height: 300px;
 }

@@ -1,24 +1,35 @@
 
 
-
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
+function showEvents() {
+  $.getJSON("/articles", function(data) {
   // For each one
+  $("#articles").empty();
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
     console.log(data[i].dataend)
     if(moment().isBefore(data[i].dataend)){
-    $("#articles").append("<div id='" + data[i].eventid + "' class='article-container d-flex justify-content-between'><p class='pt-1' data-image='" + data[i].image + "'><a href='#'>" + data[i].title + "</a><br><span class='concert-date'>" + data[i].date.replace('all-day','') +"</span></p><i class='favorite-icon fas fa-heart mt-2 ml-1' data-id='" + data[i]._id + "'></div>");
+    $("#articles").append("<div id='" + data[i].eventid + "' class='article-container d-flex justify-content-between'><p class='pt-1' data-image='" + data[i].image + "'><a href='#'>" + data[i].title + "</a><br><span class='concert-date'>" + data[i].date.replace('all-day','') +"</span></p></div>");
     }
   }
-});
+  })
+};
 
 //Whenever someone clicks on a concert title
 $(document).on("click", "p", function() {
+  $(".img-magnifier-glass").remove()
   $("img").attr("src",$(this).attr("data-image"))
   })
 
+$(document).on("click", "#flyerimg", function() {
+  magnify("flyerimg", 2);
+  })
+$(document).on("click", ".img-magnifier-glass", function() {
+  $(".img-magnifier-glass").remove()
+  })
+
 $(document).on("click", ".fa-sync-alt", function() {
+  $(this).toggleClass("spin")
   let alleventids = []
   $('#articles').children('div').each(function(){
     alleventids.push($(this).attr('id')); // To save the class names
@@ -103,3 +114,66 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+function magnify(imgID, zoom) {
+  var img, glass, w, h, bw;
+  img = document.getElementById(imgID);
+
+  /* Create magnifier glass: */
+  glass = document.createElement("DIV");
+  glass.setAttribute("class", "img-magnifier-glass");
+
+  /* Insert magnifier glass: */
+  img.parentElement.insertBefore(glass, img);
+
+  /* Set background properties for the magnifier glass: */
+  glass.style.backgroundImage = "url('" + img.src + "')";
+  glass.style.backgroundRepeat = "no-repeat";
+  glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
+  bw = 3;
+  w = glass.offsetWidth / 2;
+  h = glass.offsetHeight / 2;
+
+  /* Execute a function when someone moves the magnifier glass over the image: */
+  glass.addEventListener("mousemove", moveMagnifier);
+  img.addEventListener("mousemove", moveMagnifier);
+
+  /*and also for touch screens:*/
+  glass.addEventListener("touchmove", moveMagnifier);
+  img.addEventListener("touchmove", moveMagnifier);
+  function moveMagnifier(e) {
+    var pos, x, y;
+    /* Prevent any other actions that may occur when moving over the image */
+    e.preventDefault();
+    /* Get the cursor's x and y positions: */
+    pos = getCursorPos(e);
+    x = pos.x;
+    y = pos.y;
+    /* Prevent the magnifier glass from being positioned outside the image: */
+    if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
+    if (x < w / zoom) {x = w / zoom;}
+    if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
+    if (y < h / zoom) {y = h / zoom;}
+    /* Set the position of the magnifier glass: */
+    glass.style.left = (x - w) + "px";
+    glass.style.top = (y - h) + "px";
+    /* Display what the magnifier glass "sees": */
+    glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+  }
+
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+    /* Get the x and y positions of the image: */
+    a = img.getBoundingClientRect();
+    /* Calculate the cursor's x and y coordinates, relative to the image: */
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+    /* Consider any page scrolling: */
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }
+}
+
+showEvents()

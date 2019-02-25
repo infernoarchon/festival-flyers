@@ -25,6 +25,7 @@
     "magnifier": "^0.4.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.15",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "zooming": "^2.1.1"
   }
 }

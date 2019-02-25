@@ -8,31 +8,34 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
-  <body scroll="no" style="overflow: hidden;">
-    <div class="col-12 row" id="wrapper">
-      <div class="col-3" id="left-nav">
-        <!-- <div class="left-nav-header"><h4>FestivalFlyers</h4></div> -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand" href="#"><h5>Festival Flyers</h5></a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-            </ul>
-            <div>
-              <i class="fas fa-sync-alt"></i>
+  <body>
+      <div id="left-nav">
+          <!-- <div class="left-nav-header"><h4>FestivalFlyers</h4></div> -->
+          <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#"><h5>Festival Flyers</h5></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"></a>
+                </li>
+              </ul>
+              <div>
+                <i class="fas fa-sync-alt"></i>
+              </div>
             </div>
-          </div>
-        </nav>
-        <div id=articles></div>
-      </div>
+          </nav>
+          <div id=articles></div>
+        </div>
+    <div class="wrapper d-flex justify-content-between">
+
+      <div class="left-nav-placeholder"></div>
       <!-- <div id="notes"></div> -->
-      <div class="col-9 flyer-container d-flex justify-content-center align-items-center"><div class="img-magnifier-container d-flex justify-content-center align-items-center"><img id="flyerimg" class="img-fluid flyer-image"></div></div>
-      <div class="col-3 comment-area invisible"></div>
+      <div class="flyer-container d-flex justify-content-center align-items-center"><div class="img-magnifier-container d-flex justify-content-center align-items-center">
+        <img id="flyerimg" class="flyer-image zoom img-fluid" src="/assets/images/placeholder.svg">
+      </div></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>

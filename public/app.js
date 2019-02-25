@@ -27,16 +27,21 @@ function compare(a,b) {
 
 //Whenever someone clicks on a concert title
 $(document).on("click", "p", function() {
-  $(".img-magnifier-glass").remove()
   $("img").attr("src",$(this).attr("data-image"))
+  $(".zoom").removeClass("zoomed")
   })
 
-$(document).on("click", "#flyerimg", function() {
-  magnify("flyerimg", 2);
+//Magnify
+
+$(document).on("click", ".zoom", function() {
+  console.log("clicked zoom")
+  $(".zoom").addClass("zoomed")
   })
-$(document).on("click", ".img-magnifier-glass", function() {
-  $(".img-magnifier-glass").remove()
+$(document).on("click", ".zoomed", function() {
+  console.log("clicked zoom")
+  $(".zoom").removeClass("zoomed")
   })
+
 
 $(document).on("click", ".fa-sync-alt", function() {
   $(this).toggleClass("spin")

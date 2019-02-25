@@ -52,7 +52,7 @@ app.post("/scrape", function(req, res) {
       result.dataend = $(this).attr('data-end')
 
       // Create a new Article using the `result` object built from scraping
-      if(true) {
+      if(!req.body.eventids || !req.body.eventids.includes(result.eventid)) {
         db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
@@ -63,18 +63,9 @@ app.post("/scrape", function(req, res) {
           console.log(err);
           res.end()
         })
-        // res.end()
-      } else {
-      db.Article.create(result)
-        .then(function(dbArticle) {
-          // View the added result in the console
-          res.end()
-        })
-        .catch(function(err) {
-          // If an error occurred, log it
-          console.log(err);
-          res.end()
-        })
+      }
+      else{
+        res.end()
       }
     });
     // Send a message to the client

@@ -1,9 +1,15 @@
+
+
+
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<div class='article-container d-flex justify-content-between'><p class='pt-1' data-image='" + data[i].image + "'><a href='#'>" + data[i].title + "</a><br><span class='concert-date'>" + data[i].date.replace('all-day','') +"</span></p><i class='favorite-icon fas fa-heart mt-2 ml-1' data-id='" + data[i]._id + "'></div>");
+    console.log(data[i].dataend)
+    if(moment().isBefore(data[i].dataend)){
+    $("#articles").append("<div id='" + data[i].eventid + "' class='article-container d-flex justify-content-between'><p class='pt-1' data-image='" + data[i].image + "'><a href='#'>" + data[i].title + "</a><br><span class='concert-date'>" + data[i].date.replace('all-day','') +"</span></p><i class='favorite-icon fas fa-heart mt-2 ml-1' data-id='" + data[i]._id + "'></div>");
+    }
   }
 });
 
@@ -11,6 +17,24 @@ $.getJSON("/articles", function(data) {
 $(document).on("click", "p", function() {
   $("img").attr("src",$(this).attr("data-image"))
   })
+
+$(document).on("click", ".fa-sync-alt", function() {
+  let alleventids = []
+  $('#articles').children('div').each(function(){
+    alleventids.push($(this).attr('id')); // To save the class names
+  })
+  console.log(alleventids)
+  $("#articles").empty();
+    $.ajax({
+    method: "POST",
+    url: "/scrape",
+    data: {eventids: alleventids}
+    }).then(
+      function() {
+        // Reload the page to get the updated list
+        location.reload();
+      })
+})
 
 
 

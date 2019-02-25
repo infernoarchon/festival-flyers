@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
+    <title>FestivalFlyers</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Roboto:400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -11,13 +11,30 @@
   <body scroll="no" style="overflow: hidden;">
     <div class="col-12 row" id="wrapper">
       <div class="col-4" id="left-nav">
-        <div class="left-nav-header"><h4>FestivalFlyers</h4></div>
+        <!-- <div class="left-nav-header"><h4>FestivalFlyers</h4></div> -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+          <a class="navbar-brand" href="#"><h4>FestivalFlyers</h4></a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Favorites</a>
+              </li>
+            </ul>
+            <div>
+              <i class="fas fa-sync-alt"></i>
+            </div>
+          </div>
+        </nav>
         <div id=articles></div>
       </div>
       <!-- <div id="notes"></div> -->
       <div class="col-8 flyer-container d-flex justify-content-center align-items-center"><img class="img-fluid flyer-image"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

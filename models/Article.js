@@ -10,7 +10,6 @@ var ArticleSchema = new Schema({
   title: {
     type: String,
     required: true,
-    unique: true
   },
   image: {
     type: String,
@@ -18,6 +17,14 @@ var ArticleSchema = new Schema({
   },
   date: {
     type: String,
+    required: true,
+  },
+  eventid: {
+    type: String,
+    required: true,
+  },
+  dataend: {
+    type: Date,
     required: true,
   },
   // `link` is required and of type String
@@ -29,8 +36,8 @@ var ArticleSchema = new Schema({
     ref: "Note"
   }
 });
-
 // This creates our model from the above schema, using mongoose's model method
+
 var Article = mongoose.model("Article", ArticleSchema);
 
 // Export the Article model

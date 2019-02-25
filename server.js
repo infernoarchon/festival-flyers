@@ -28,16 +28,17 @@ app.use(express.static("public"));
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/newsscraper", { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true)
 
 // Routes
 
 // A GET route for scraping the echoJS website
-app.get("/scrape", function(req, res) {
+app.post("/scrape", function(req, res) {
+  console.log(req.body)
   // First, we grab the body of the html with axios
   axios.get("https://thatdrop.com/upcoming-edm-events").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-
     // Now, we grab every h2 within an article tag, and do the following:
     $('.ai1ec-event').each(function(i, element) {
       // Save an empty result object
@@ -47,23 +48,36 @@ app.get("/scrape", function(req, res) {
       result.title = $(this).find('.ai1ec-event-title').contents();
       result.date = $(this).find('.ai1ec-event-time').text();
       result.image = $(this).find('img').attr('src');
-
+      result.eventid = $(this).attr('class').slice(35,40);
+      result.dataend = $(this).attr('data-end')
 
       // Create a new Article using the `result` object built from scraping
-      if(result.title)
-      db.Article.create(result)
+      if(true) {
+        db.Article.create(result)
         .then(function(dbArticle) {
           // View the added result in the console
-          console.log(dbArticle);
+          res.end()
         })
         .catch(function(err) {
           // If an error occurred, log it
           console.log(err);
-        });
+          res.end()
+        })
+        // res.end()
+      } else {
+      db.Article.create(result)
+        .then(function(dbArticle) {
+          // View the added result in the console
+          res.end()
+        })
+        .catch(function(err) {
+          // If an error occurred, log it
+          console.log(err);
+          res.end()
+        })
+      }
     });
-
     // Send a message to the client
-    res.send("Scrape Complete");
   });
 });
 

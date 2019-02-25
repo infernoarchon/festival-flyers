@@ -136,12 +136,12 @@ textarea {
 * {box-sizing: border-box;}
 
 .flyer-image {
-  max-height: 90%;
+  max-height: 90vh !important;
 }
 
 .img-magnifier-container {
   position: relative;
-  height: 100vh;
+  max-height: 90%;
 }
 
 .img-magnifier-glass {

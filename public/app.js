@@ -5,15 +5,25 @@ function showEvents() {
   $.getJSON("/articles", function(data) {
   // For each one
   $("#articles").empty();
-  for (var i = 0; i < data.length; i++) {
+  let event = data
+  event.sort(compare);
+  console.log(event)
+  for (var i = 0; i < event.length; i++) {
     // Display the apropos information on the page
-    console.log(data[i].dataend)
-    if(moment().isBefore(data[i].dataend)){
-    $("#articles").append("<div id='" + data[i].eventid + "' class='article-container d-flex justify-content-between'><p class='pt-1' data-image='" + data[i].image + "'><a href='#'>" + data[i].title + "</a><br><span class='concert-date'>" + data[i].date.replace('all-day','') +"</span></p></div>");
+    if(moment().isBefore(event[i].dataend)){
+    $("#articles").append("<div id='" + event[i].eventid + "' class='article-container d-flex justify-content-between'><p class='pt-1' data-image='" + event[i].image + "'><a href='#'>" + event[i].title + "</a><br><span class='concert-date'>" + event[i].date.replace('all-day','') +"</span></p></div>");
     }
   }
   })
 };
+
+function compare(a,b) {
+  if (moment(a.dataend) < moment(b.dataend))
+    return -1;
+  if (moment(a.dataend) > moment(b.dataend))
+    return 1;
+  return 0;
+}
 
 //Whenever someone clicks on a concert title
 $(document).on("click", "p", function() {

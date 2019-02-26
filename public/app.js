@@ -29,6 +29,9 @@ function compare(a,b) {
 
 
 //Whenever someone clicks on a concert title
+$(document).on("click", ".navbar-brand", function() {
+  location.reload();
+})
 $(document).on("click", ".event-title", handleArticleNotes)
 $(document).on("click", ".event-title", function() {
   $("img").attr("src",$(this).attr("data-image"))
@@ -39,6 +42,8 @@ $(document).on("click", ".icon-container", function() {
   $("#right-nav").toggleClass("invisible")
   $(".comment-icon").toggleClass("fa-times")
   $(".comment-icon").toggleClass("fa-comment")
+  $(".flyer-container").toggleClass("flyer-container-sm")
+  $(".wrapper").toggleClass("justify-content-between")
 })
 
 
@@ -95,6 +100,7 @@ function renderNotesList(data) {
   // Also setting up a currentNote variable to temporarily store each note
   var notesToRender = [];
   var currentNote;
+  notesToRender.push(currentNote);
   if (!data.notes.length) {
     // If we have no notes, just display a message explaining this
     // currentNote = $("<li class='list-group-item'>No notes for this article yet.</li>");
@@ -142,6 +148,8 @@ function handleArticleNotes(event) {
 
 function handleNoteSave(e) {
   e.preventDefault()
+  
+  $(".right-nav-middle").scrollTop(0)
   // This function handles what happens when a user tries to save a new note for an article
   // Setting a variable to hold some formatted data about our note,
   // grabbing the note typed into the input box

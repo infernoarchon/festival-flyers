@@ -102,6 +102,7 @@ function renderNotesList(data) {
   var currentNote;
   notesToRender.push(currentNote);
   if (!data.notes.length) {
+    currentNote = $("<li class='list-group-item no-comments' style='border-bottom: 0 !important;color: #999;'>No comments yet.</li>")
     // If we have no notes, just display a message explaining this
     // currentNote = $("<li class='list-group-item'>No notes for this article yet.</li>");
     notesToRender.push(currentNote);
@@ -173,6 +174,7 @@ function handleNoteSave(e) {
       // Adding our currentNote to the notesToRender array
   // Now append the notesToRender to the note-container inside the note modal
       $(".note-container").prepend(addedNote);
+      $(".no-comments").empty()
 
 
     });

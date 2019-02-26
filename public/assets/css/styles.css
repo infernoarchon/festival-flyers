@@ -2,6 +2,10 @@ body {
   background-color: #eee !important;
 }
 
+body::-webkit-scrollbar { 
+  display: none; 
+}
+
 nav {
   border-bottom: 1px solid #ccc;
 }
@@ -103,7 +107,7 @@ h5 {
 
 
 #left-nav {
-  width: 400px;
+  width: 25vw;
   position: fixed;
   height: 100vh;
   padding: 0 !important;
@@ -124,15 +128,12 @@ h5 {
 textarea, input {
   display: block;
   width: 100%;
-  background-color: #FCF5C7;
+  height: 80px;
+
 }
 input {
   height: 36px;
   font-size: 24px;
-}
-textarea {
-  height: 200px;
-  font-size: 18px;
 }
 .save-button {
     margin-top: -2.5em;
@@ -190,6 +191,81 @@ textarea {
 }
 
 .left-nav-placeholder {
-  -ms-flex: 0 0 400px;
-  flex: 0 0 400px;
+  -ms-flex: 0 0 25vw;
+  flex: 0 0 25vw;
+}
+
+#right-nav {
+  position: fixed;
+  color: #fff;
+  background-color: rgba(51, 51, 51, 0.9);
+  right: 0;
+  width: 22vw;
+  height: 100vh;
+  z-index: 999;
+}
+
+.right-nav-top {
+  text-align: right;
+  padding: 1em;
+  position: fixed;
+  right: 0;
+}
+
+.right-nav-middle {
+  height: calc(100% - 120px);
+  overflow-y: scroll;
+  padding: 1em 1em 0 1em;
+}
+
+.right-nav-bottom {
+  height: 120px;
+}
+
+.chat-input {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  background: transparent;
+  color: #fff;
+  font-size: 0.75em !important;
+}
+
+.chat-area {
+  text-align: center;
+}
+
+.chatmsg {
+  margin: 0 1em 1em 1em;
+}
+
+.icon-container {
+  position: fixed;
+  right: 8px;
+  top: 8px;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background-color: #333;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  z-index: 9999;
+}
+
+.list-group {
+  background: transparent !important;
+}
+
+.list-group-item {
+  background: transparent !important;
+  font-size: 0.75em;
+  border: 0 !important;
+  border-bottom: 1px solid #666 !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+  z-index: -1 !important;
+}
+
+.user-id {
+  font-size: 0.875em;
+  color: #999;
 }

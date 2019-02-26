@@ -108,9 +108,11 @@ function renderNotesList(data) {
   } else {
     // If we do have notes, go through each one
     for (var i = 0; i < data.notes.length; i++) {
+      let options = { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+      let date = new Date (data.notes[i].date)
       // Constructs an li element to contain our noteText and a delete button
       currentNote = $("<li class='list-group-item note'>")
-        .html("<strong><span class='user-id'>User #" + data.notes[i]._id + "</span></strong><br>" + data.notes[i].noteText)
+        .html("<span class='user-id'><strong>User #" + data.notes[i]._id + "</strong><br>" + date.toLocaleDateString("en-US", options) + "</span><br>" + data.notes[i].noteText)
         // .append($("<button class='btn btn-danger note-delete'>x</button>"));
       // Store the note id on the delete button for easy access when trying to delete
       // currentNote.children("button").data("_id", data.notes[i]._id);
@@ -165,7 +167,7 @@ function handleNoteSave(e) {
       console.log(data)
       $("textarea").val('')
       addedNote = $("<li class='list-group-item note'>")
-        .html("<strong><span class='user-id'>You</span></strong><br>" + newNote)
+        .html("<span class='user-id'><strong>You</strong><br>Now</span><br>" + newNote)
         // .append($("<button class='btn btn-danger note-delete'>x</button>"));
       // Store the note id on the delete button for easy access when trying to delete
       // Adding our currentNote to the notesToRender array

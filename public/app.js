@@ -11,7 +11,7 @@ function showEvents() {
   for (var i = 0; i < event.length; i++) {
     // Display the apropos information on the page
     if(moment().isBefore(event[i].dataend)){
-    $("#articles").append("<div id='" + event[i].eventid + "' class='article-container d-flex justify-content-between'><p data-_id = '" + event[i]._id + "'class='pt-1 event-title' data-image='" + event[i].image + "'><a href='#'>" + event[i].title + "</a><br><span class='concert-date'>" + event[i].date.replace('all-day','') +"</span></p></div>");
+    $("#articles").append("<div data-eventid='" + event[i].eventid + "' class='article-container d-flex justify-content-between'><p data-_id = '" + event[i]._id + "'class='pt-1 event-title' data-image='" + event[i].image + "'><a href='#'>" + event[i].title + "</a><br><span class='concert-date'>" + event[i].date.replace('all-day','') +"</span></p></div>");
     }
   }
   })
@@ -73,19 +73,21 @@ $(document).on("click", ".zoomed", function() {
   $(".zoom").removeClass("zoomed")
   })
 
+//Sync
 
 $(document).on("click", ".fa-sync-alt", function() {
   $(this).toggleClass("spin")
   let alleventids = []
   $('#articles').children('div').each(function(){
-    alleventids.push($(this).attr('id')); // To save the class names
+    alleventids.push($(this).attr('data-eventid')); // To save the class names
   })
   console.log(alleventids)
   $("#articles").empty();
     $.ajax({
     method: "POST",
     url: "/scrape",
-    data: {eventids: alleventids}
+    data: {eventids: alleventids},
+    traditional: true
     }).then(
       function() {
         // Reload the page to get the updated list

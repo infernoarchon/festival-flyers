@@ -49,7 +49,8 @@ app.get("/", (req, res) => {
 
 // A GET route for scraping the echoJS website
 app.post("/scrape", function(req, res) {
-  console.log(req.body)
+  console.log("req body is", req.body)
+  console.log("reqbody stringified is is", JSON.stringify(req.body))
   // First, we grab the body of the html with axios
   axios.get("https://thatdrop.com/upcoming-edm-events").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -65,6 +66,7 @@ app.post("/scrape", function(req, res) {
       result.image = $(this).find('img').attr('src');
       result.eventid = $(this).attr('class').slice(35,40);
       result.dataend = $(this).attr('data-end')
+      console.log(result.eventid)
 
       // Create a new Article using the `result` object built from scraping
       if(!req.body.eventids || !req.body.eventids.includes(result.eventid)) {

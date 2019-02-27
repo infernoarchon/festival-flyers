@@ -38,12 +38,14 @@ $(document).on("click", ".event-title", function() {
   $(".zoom").removeClass("zoomed")
 })
 
+//Whenever someone clicks on the chat icon
 $(document).on("click", ".icon-container", function() {
   $("#right-nav").toggleClass("invisible")
   $(".comment-icon").toggleClass("fa-times")
   $(".comment-icon").toggleClass("fa-comment")
   $(".flyer-container").toggleClass("flyer-container-sm")
   $(".wrapper").toggleClass("justify-content-between")
+  $(".chat-input").focus();
 })
 
 

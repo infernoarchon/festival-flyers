@@ -1,4 +1,5 @@
 var express = require("express");
+var exphbs = require("express-handlebars");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 
@@ -21,17 +22,30 @@ var app = express();
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Parse request body as JSON
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
+
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsscraper";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true)
 
+// Handlebars
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+app.set("view engine", "handlebars");
+
 // Routes
+app.get("/", (req, res) => {
+  res.render("home");
+});
 
 // A GET route for scraping the echoJS website
 app.post("/scrape", function(req, res) {

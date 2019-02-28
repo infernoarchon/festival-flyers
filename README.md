@@ -7,9 +7,10 @@ This is a web scraper that scans thatdrop.com for festival information and store
 ## Installation
 
 1. `git clone`
-2. `npm install`
+2. run `npm install` in project directory
 3. Install and run MongoDB Community Server via homebrew or other installation method
-4. Go to `localhost:3000` in browser to view site locally
+4. run `node server` in project directory to start the server
+5. Go to `localhost:3000` in browser to view site locally
 
 ## Technologies
 

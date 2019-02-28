@@ -2,7 +2,7 @@
 
 ## Summary
 
-This is a web scraper that scans thatdrop.com for festival information and stores them in a MongoDB collection. Users can comment on each festival anonymously.
+This is a web scraper that scans thatdrop.com for festival information and stores them in a MongoDB collection. Users can comment on each festival flyer anonymously.
 
 ## Installation
 

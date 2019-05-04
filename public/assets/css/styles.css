@@ -83,6 +83,7 @@ h5 {
   display: inline-block;
   overflow: auto;
   height: calc(100vh - 65px);
+  width: 25vw;
 }
 
 .nav-link {
